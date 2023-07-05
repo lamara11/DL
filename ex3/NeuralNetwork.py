@@ -28,12 +28,9 @@ class NeuralNetwork:
         output = input_tensor
         regularization_loss = 0.0
         for layer in self.layers:
-            layer.testing_phase = False
+            #layer.testing_phase = False
             output = layer.forward(output)
             if self.optimizer.regularizer is not None and layer.trainable:
-                if layer.weights is None:
-                    print("found it")
-                    print(layer)
                 regularization_loss += self.optimizer.regularizer.norm(layer.weights)
         res=0
         res += regularization_loss
